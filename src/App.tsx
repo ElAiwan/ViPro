@@ -1,0 +1,35 @@
+import {lazy,Suspense,useEffect,useReducer,useState} from 'react';
+import {ArrowLeft,ArrowUpRight,House,Box,Scan,ChevronRight,Camera,Plus,Minus,RotateCcw,Move,MousePointer2,Layers} from 'lucide-react';
+import {rooms,roomItems,labels,cameras} from './catalog';
+import {initialState,reducer} from './state';
+import FloorPlan from './components/FloorPlan';
+import ProductPanel,{itemIcons} from './components/ProductPanel';
+import './styles.css';
+const RoomScene=lazy(()=>import('./components/RoomScene'));
+export default function App(){
+ const [state,dispatch]=useReducer(reducer,initialState);const [zoom,setZoom]=useState(0);
+ const room=rooms.find(r=>r.id===state.room);
+ useEffect(()=>{const fn=(e:KeyboardEvent)=>{if(e.key==='Escape')dispatch({type:'back'})};window.addEventListener('keydown',fn);return()=>window.removeEventListener('keydown',fn)},[]);
+ return <div className={`app ${room?'detail-view':'home-view'}`}>
+ <header className="main-header"><button className="brand" aria-label="SCHRAMM Startseite" onClick={()=>dispatch({type:'home'})}><House size={33} strokeWidth={1.8}/><span>SCHRAMM<small>Räume. Für Sie.</small></span></button><div className="header-center">Digitaler Badkatalog</div><div className="header-right"><span className="demo-badge">Konzeptdemo</span>{room&&<button className="icon-button" onClick={()=>dispatch({type:'home'})} aria-label="Zur Badauswahl"><House size={19}/></button>}</div></header>
+ {!room?<main className="home-main">
+ <div className="intro"><div><span className="intro-line"/><h1>Ihr neues Bad.<br/>Beginnt mit einer Idee.</h1></div><p>Drei Badwelten. Ihr ganz eigener Stil.<br/>Entdecken Sie Räume und gestalten Sie die Details.</p></div>
+ <div className="room-cards">{rooms.map(r=><button className={`room-card room-${r.id}`} key={r.id} onClick={()=>dispatch({type:'room',id:r.id})} aria-label={`${r.name} entdecken`}><div className={`room-photo photo-${r.id}`} role="img" aria-label={`Badinspiration ${r.name} aus der Referenzpräsentation`}/><div className="photo-shade"/><span className="room-area">{(r.size[0]*r.size[1]).toFixed(1).replace('.',',')} m²</span><div className="room-card-bottom"><div className="card-swatches">{r.swatches.map(c=><i style={{background:c}} key={c}/>)}</div><h2>{r.name}</h2><p>{r.subtitle}</p><div className="card-action"><span>Bad entdecken</span><span className="circle-arrow"><ArrowUpRight size={23}/></span></div></div></button>)}</div>
+ <div className="home-bottom"><span><MousePointer2 size={16}/>Eine Badwelt auswählen und interaktiv entdecken.</span><span>Materialien erleben. Möglichkeiten entdecken.</span></div>
+ </main>:<main className="detail-main" key={room.id}>
+ <div className="detail-top"><div className="breadcrumb"><button className="back-button" onClick={()=>dispatch({type:'back'})}><ArrowLeft size={19}/><span>Zurück</span></button><span className="breadcrumb-divider"/><button className="breadcrumb-home" onClick={()=>dispatch({type:'home'})}>Badwelten</button><ChevronRight size={14}/><span>{room.name}</span></div><span className="room-measure">{room.size[0].toFixed(2).replace('.',',')} × {room.size[1].toFixed(2).replace('.',',')} m</span></div>
+ <div className="workspace"><section className="viewer-column" aria-label="Bad erkunden"><div className="viewer-header"><div><h1>{room.name}</h1><p>{room.subtitle}</p></div><div className="view-switch" role="group" aria-label="Ansicht wählen"><button className={state.mode==='plan'?'active':''} aria-pressed={state.mode==='plan'} onClick={()=>dispatch({type:'mode',mode:'plan'})}><Scan size={17}/>Grundriss</button><button className={state.mode==='3d'?'active':''} aria-pressed={state.mode==='3d'} onClick={()=>dispatch({type:'mode',mode:'3d'})}><Box size={17}/>3D erleben</button></div></div>
+ <div className={`viewer-surface ${state.mode==='3d'?'is-3d':''}`}>
+ <div className="viewer-tag"><span className="status-dot"/>{state.mode==='plan'?'Grundriss / 2D':'Interaktiver Raum / 3D'}</div>
+ {state.mode==='plan'?<FloorPlan room={room} variants={state.variants[room.id]} selected={state.selected} onSelect={item=>dispatch({type:'select',item})} onCamera={camera=>dispatch({type:'camera',camera})}/>:<Suspense fallback={<div className="scene-fallback">Ihr Bad wird aufgebaut …</div>}><RoomScene room={room} variants={state.variants[room.id]} selected={state.selected} camera={state.camera} cameraTick={state.cameraTick} onSelect={item=>dispatch({type:'select',item})} zoom={zoom}/></Suspense>}
+ {state.mode==='3d'&&<div className="zoom-controls"><button aria-label="Vergrößern" onClick={()=>setZoom(z=>Math.abs(z)+1)}><Plus size={19}/></button><button aria-label="Verkleinern" onClick={()=>setZoom(z=>-(Math.abs(z)+1))}><Minus size={19}/></button><button aria-label="Ansicht zurücksetzen" onClick={()=>dispatch({type:'camera',camera:'overview'})}><RotateCcw size={17}/></button></div>}
+ </div>
+ <div className="viewer-tools">{state.mode==='plan'?<><span><Plus size={17}/>Produkt auswählen</span><span><Camera size={18}/>Perspektive öffnen</span><button onClick={()=>dispatch({type:'mode',mode:'3d'})}>Raum in 3D erkunden <ArrowUpRight size={17}/></button></>:<><span><Move size={16}/>Ziehen zum Drehen</span><span>Zwei Finger zum Zoomen</span><button onClick={()=>dispatch({type:'mode',mode:'plan'})}><Scan size={16}/>Zum Grundriss</button></>}</div>
+ <div className="camera-strip"><span><Camera size={17}/>Perspektiven</span><div>{cameras.map(c=><button key={c.id} className={state.mode==='3d'&&state.camera===c.id?'active':''} onClick={()=>dispatch({type:'camera',camera:c.id})}>{c.label}</button>)}</div></div>
+ </section>
+ {state.selected?<ProductPanel item={state.selected} room={room} variants={state.variants[room.id]} onVariant={index=>dispatch({type:'variant',item:state.selected!,index})} onClose={()=>dispatch({type:'select',item:null})} is3d={state.mode==='3d'} onView={()=>dispatch({type:'mode',mode:'3d'})}/>:<aside className="room-panel"><span className="small-label">Ihre Badwelt</span><h2>Raum für Ihren Stil.</h2><p className="room-description">{room.description}</p><div className="room-stats"><div><strong>{(room.size[0]*room.size[1]).toFixed(1).replace('.',',')} <span>m²</span></strong><span>Raumfläche</span></div><div><strong>{roomItems(room).length}</strong><span>Gestaltbare Elemente</span></div></div><div className="material-list"><h3>Farben & Materialien</h3>{room.materials.map((m,i)=><div key={m}><span style={{background:room.swatches[i]}}/>{m}</div>)}</div><div className="elements-list"><h3>Details entdecken</h3>{roomItems(room).map(item=>{const Icon=itemIcons[item];return <button key={item} onClick={()=>dispatch({type:'select',item})}><Icon size={19}/><span>{labels[item]}</span><span className="element-options">3 Varianten</span><ChevronRight size={16}/></button>})}</div><p className="panel-hint"><Layers size={20}/>Wählen Sie ein Element im Raum oder in der Liste, um Varianten zu entdecken.</p></aside>}
+ </div>
+ </main>}
+ <footer className="app-footer"><span><i/>SCHRAMM Badwelten</span><span>{room?'Beispielplanung · individuell gestaltbar':'Interaktiver Showroom'}</span><span>Demo · 2026</span></footer>
+ </div>
+}
