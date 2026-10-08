@@ -4,10 +4,11 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "dev": "node scripts/dev.mjs",
+    "dev:api": "node server/index.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "node --experimental-strip-types src/catalog.test.ts"
+    "test": "node --experimental-strip-types --test src/catalog.test.ts server/*.test.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.0",

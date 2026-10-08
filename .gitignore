@@ -2,3 +2,8 @@ node_modules/
 dist/
 *.tsbuildinfo
 .DS_Store
+storage/private/
+
+# Material del cliente y capturas de referencia: no versionar
+\!2026-06 CD_Manual_CD_2026-1.pdf
+Screenshotr de referencia/
