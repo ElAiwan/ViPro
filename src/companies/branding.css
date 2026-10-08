@@ -1,0 +1,105 @@
+@font-face { font-family: 'Montserrat'; src: url('/fonts/Montserrat-Variable.ttf') format('truetype'); font-weight: 100 900; font-style: normal; font-display: swap; }
+/* Outfit (OFL) stands in for Nohemi until licensed files are available. */
+@font-face { font-family: 'Outfit'; src: url('/fonts/Outfit-Variable.ttf') format('truetype'); font-weight: 100 900; font-style: normal; font-display: swap; }
+/* All company rules stay inside this boundary; the Brudello overview/login keep their own identity. */
+.portal-home[data-company-theme] { --ink: var(--company-heading); --accent: var(--company-primary); --muted: #525252; --line: #dedede; font-family: var(--company-body-font); color: #000; background: var(--company-background); }
+[data-company-theme] h1, [data-company-theme] h2, [data-company-theme] h3 { font-family: var(--company-heading-font); color: var(--company-heading); }
+[data-company-theme] button:focus-visible, [data-company-theme] input:focus-visible, [data-company-theme] select:focus-visible { outline: 3px solid var(--company-heading); outline-offset: 4px; }
+[data-company-theme] .portal-home-header { min-height: 100px; height: auto; padding: 22px 38px; border-bottom: 1px solid #e8e8e8; gap: 32px; }
+[data-company-theme] .company-header-brand { border-left: 5px solid var(--company-primary); padding-left: 17px; color: var(--company-heading); }
+[data-company-theme] .company-header-brand > svg { display: none; }
+[data-company-theme] .company-header-brand strong { font-family: var(--company-heading-font); font-size: 28px; font-weight: 700; letter-spacing: .025em; }
+[data-company-theme] .portal-admin-tag { color: #525252; font-size: 11px; }
+[data-company-theme] .portal-signout { color: #282727; border-color: #d3d3d3; border-radius: 4px; font-size: 12px; min-height: 44px; }
+[data-company-theme] .portal-signout:hover { background: #f1f1f1; }
+[data-company-theme] .portal-home-body { min-height: calc(100dvh - 100px); }
+[data-company-theme] .portal-sidebar { border-right: 1px solid #e8e8e8; width: 224px; }
+[data-company-theme] .portal-nav-active { background: #f3f3f3; color: var(--company-heading); border-left: 4px solid var(--company-primary); border-radius: 0 5px 5px 0; padding-left: 13px; font-size: 12px; }
+[data-company-theme] .portal-nav-active svg { color: var(--company-heading); }
+[data-company-theme] .portal-avatar { background: #eee; color: #282727; }
+[data-company-theme] .portal-home-main { max-width: 1320px; width: 100%; padding-top: 34px; }
+[data-company-theme] .company-back { color: #444; font-size: 12px; margin-bottom: 14px; }
+[data-company-theme] .company-admin-view { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #f5f5f5; color: #444; border-left: 3px solid var(--company-primary); margin-bottom: 24px; }
+[data-company-theme] .company-admin-view button { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; border: 1px solid #bbb; border-radius: 4px; background: white; color: #282727; padding: 9px 12px; font-size: 11px; flex-shrink: 0; }
+[data-company-theme] .company-welcome { padding: 40px; border: 1px solid #ddd; border-top: 4px solid var(--company-primary); border-radius: 5px; position: relative; isolation: isolate; overflow: hidden; }
+[data-company-theme] .company-identity-icon { display: none; }
+[data-company-theme] .company-identity h1 { font-size: clamp(25px,2.4vw,35px); letter-spacing: .02em; font-weight: 600; }
+[data-company-theme] .company-identity p { color: #525252; font-size: 12px; }
+[data-company-theme] .company-welcome .company-welcome-title { font-family: var(--company-heading-font); font-size: clamp(28px,3.5vw,46px); font-weight: 600; line-height: 1.17; letter-spacing: .02em; color: var(--company-heading); max-width: 600px; margin-top: 36px; }
+[data-company-theme] .company-welcome > p:not(.company-welcome-title) { color: #000; font-size: 14px; line-height: 1.8; max-width: 470px; margin-top: 15px; }
+[data-company-theme] .company-home-meta { color: #525252; border-color: #e4e4e4; margin-top: 30px; }
+[data-company-theme] .company-future-areas { gap: 24px; }
+[data-company-theme] .company-future-areas section { background: white; border: 1px solid #ddd; border-top: 3px solid var(--company-primary); border-radius: 5px; padding: 28px; color: var(--company-heading); }
+[data-company-theme] .company-future-areas section:nth-child(2) { border-top-color: var(--company-secondary); }
+[data-company-theme] .company-future-areas h2 { font-size: 20px; font-weight: 600; color: var(--company-heading); }
+[data-company-theme] .company-future-areas p { color: #000; font-size: 13px; max-width: 45ch; }
+[data-company-theme] .company-future-areas section > span { color: #444; background: #f0f0f0; border-radius: 4px; }
+[data-company-theme] .company-contact { color: var(--company-heading); margin-top: 10px; }
+[data-company-theme] .company-contact p { color: #000; }
+[data-company-theme] .company-detail-users { border-color: #ddd; border-radius: 5px; }
+[data-company-theme] .company-detail-users li { border-color: #e8e8e8; }
+[data-company-theme] .company-detail-users li div > span, [data-company-theme] .company-detail-title > span { color: #525252; }
+[data-company-theme] .company-user-state { color: #684b00; background: #f9f1d9; }
+[data-company-theme] .company-user-state.ready { color: #23582e; background: #edf5ed; }
+[data-company-theme] .portal-home-footer { color: #555; border-color: #ddd; }
+.company-style-nav { margin-top: 8px; border: 0; background: none; display: flex; align-items: center; gap: 12px; color: #444; font-size: 12px !important; text-align: left; padding: 14px 17px; min-height: 44px; }
+.company-style-nav:hover { background: #f4f4f4; }
+.appearance-saved { padding: 14px 0; font-size: 13px; color: #245932; }
+.appearance-editor { width: min(940px,calc(100vw - 32px)); max-height: calc(100dvh - 40px); padding: 32px; border: 1px solid #ddd; border-radius: 12px; color: #000; font-family: var(--company-body-font); background: #fff; box-shadow: 0 22px 80px #0003; }
+.appearance-editor::backdrop { background: #0007; }
+.appearance-editor header { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 28px; }
+.appearance-editor header h2 { font-size: 25px; font-family: var(--company-heading-font); color: var(--company-heading); line-height: 1.3; }
+.appearance-editor header p { font-size: 12px; color: #555; margin-top: 9px; }
+.appearance-editor header button { display: grid; place-items: center; background: white; border: 1px solid #ddd; border-radius: 4px; width: 44px; height: 44px; flex-shrink: 0; }
+.appearance-editor-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; }
+.appearance-fields { border: 0; padding: 0; min-width: 0; margin: 0; }
+.appearance-fields > label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 9px; }
+.appearance-fields select { width: 100%; min-height: 44px; border: 1px solid #aaa; padding: 10px; border-radius: 4px; font: inherit; font-size: 13px; background: white; color: #282727; }
+.appearance-help { font-size: 11px; line-height: 1.7; margin-top: 10px !important; color: #555; }
+.appearance-colors { display: grid; gap: 8px; margin: 23px 0; }
+.appearance-color { display: flex; justify-content: space-between; align-items: center; gap: 14px; font-size: 12px; }
+.appearance-color > span:last-child { display: flex; align-items: center; gap: 10px; }
+.appearance-color code { font-size: 12px; min-width: 64px; }
+.appearance-color input { width: 44px; height: 44px; border: 1px solid #ddd; padding: 3px; border-radius: 4px; background: #fff; }
+.appearance-preview { min-width: 0; padding: 27px; border: 1px solid #ccc; border-top: 5px solid var(--company-primary); border-radius: 6px; background: var(--company-background); font-family: var(--company-body-font); align-self: stretch; }
+.appearance-preview > span { display: block; color: #555; font-size: 11px; margin-bottom: 34px; }
+.appearance-preview > strong { display: block; font-family: var(--company-heading-font); font-size: 16px; overflow-wrap: anywhere; color: var(--company-heading); }
+.appearance-preview h3 { margin-top: 18px; font-size: 29px; font-weight: 600; line-height: 1.15; font-family: var(--company-heading-font); color: var(--company-heading); }
+.appearance-preview p { color: #000; font-size: 12px; line-height: 1.8; margin-top: 18px; }
+.appearance-preview-swatch { display: flex; gap: 8px; margin: 30px 0; }
+.appearance-preview-swatch span { width: 48px; height: 12px; border-radius: 4px; background: var(--company-primary); }
+.appearance-preview-swatch span + span { background: var(--company-secondary); }
+.appearance-preview-sample { display: flex; align-items: center; gap: 8px; padding: 15px 0; border-top: 1px solid #ccc; font-size: 11px; color: #000; }
+.appearance-editor footer { border-top: 1px solid #ddd; padding-top: 23px; margin-top: 28px; }
+.appearance-editor footer > p { font-size: 12px; line-height: 1.7; color: #555; max-width: 70ch; }
+.appearance-editor footer > div { display: flex; gap: 12px; justify-content: flex-end; margin-top: 18px; }
+.appearance-save { border: 1px solid var(--company-heading); background: var(--company-heading); color: white; border-radius: 4px; min-height: 44px; padding: 12px 19px; font-size: 12px !important; display: flex; align-items: center; justify-content: center; gap: 9px; }
+.appearance-save:disabled { opacity: .55; }
+.appearance-fields .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@media(max-width:1000px) {
+  [data-company-theme] .portal-home-header { gap: 20px; padding: 20px 24px; }
+  [data-company-theme] .portal-sidebar { width: 200px; }
+  [data-company-theme] .company-admin-view { align-items: flex-start; flex-direction: column; }
+}
+@media(max-width:760px) {
+  [data-company-theme] .portal-home-header { min-height: 88px; padding: 18px 20px; }
+  [data-company-theme] .company-header-brand { padding-left: 12px; min-width: 0; }
+  [data-company-theme] .company-header-brand strong { font-size: 20px; }
+  [data-company-theme] .portal-signout { font-size: 11px; gap: 5px; padding: 10px; flex-shrink: 0; }
+  [data-company-theme] .portal-home-body { min-height: calc(100dvh - 88px); }
+  [data-company-theme] .portal-home-main { padding: 24px 20px; }
+  [data-company-theme] .company-welcome { padding: 28px 24px; min-height: 0; }
+  [data-company-theme] .company-welcome .company-welcome-title { width: 100%; font-size: 33px; margin-top: 28px; }
+  [data-company-theme] .company-identity h1 { font-size: 26px; }
+  [data-company-theme] .company-future-areas { grid-template-columns: 1fr; }
+  [data-company-theme] .company-future-areas section { padding: 24px; }
+  .appearance-editor { padding: 22px; }
+  .appearance-editor-grid { grid-template-columns: 1fr; gap: 24px; }
+  .appearance-editor header h2 { font-size: 21px; }
+  .appearance-editor footer > div { flex-direction: column-reverse; }
+}
+/* Keep portal defaults from overriding controls and spacing inside the branded dialog. */
+.portal-home[data-company-theme] button:focus-visible, .portal-home[data-company-theme] input:focus-visible, .portal-home[data-company-theme] select:focus-visible { outline: 3px solid var(--company-heading); outline-offset: 4px; }
+.appearance-editor .company-secondary { color: var(--company-heading); border-color: #bbb; border-radius: 4px; font-size: 12px; }
+.portal .appearance-preview h3 { margin-top: 18px; }
+.portal .appearance-preview p { margin-top: 18px; }

@@ -1,0 +1,52 @@
+.portal-id-hint { color: var(--muted); font-size: 13px; line-height: 1.7; margin: 0 0 24px; }
+.company-main-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; min-height: 44px; color: #444; font-size: 12px; text-underline-offset: 4px; }
+.portal .company-auth { --ink: var(--company-heading); --accent: var(--company-primary); --muted: #555; --line: #dedede; font-family: var(--company-body-font); color: #000; grid-template-columns: 1.05fr 1fr; }
+.company-auth .portal-story { background: var(--company-heading); color: #fff; padding: 46px clamp(28px,5vw,80px) 32px; }
+.company-auth[data-login-theme='schramm'] .portal-story { isolation: isolate; background: var(--company-primary); background: linear-gradient(135deg,color-mix(in srgb,var(--company-primary) 35%,#001a2a),color-mix(in srgb,var(--company-secondary) 40%,#00150f)); }
+.company-login-brand { font-family: var(--company-heading-font); font-weight: 700; font-size: clamp(25px,3vw,38px); letter-spacing: .06em; text-transform: uppercase; overflow-wrap: anywhere; max-width: 100%; }
+.company-auth .portal-story-content { position: relative; padding-top: 60px; }
+.company-auth .portal-story-content h2 { font-family: var(--company-heading-font); color: #fff; font-size: clamp(34px,3.2vw,56px); font-weight: 500; line-height: 1.08; letter-spacing: .025em; max-width: 17ch; }
+.company-auth .portal-story-content > p { color: #fff; font-size: 14px; max-width: 38ch; line-height: 1.8; }
+.company-login-art { width: 115%; max-width: 580px; display: block; margin: 25px 0 0 -30px; }
+.company-auth .portal-story-bottom p { color: white; font-size: 11px; }
+.company-auth .portal-story-line { background: white; }
+.company-auth .portal-form-side { background: var(--company-background); }
+.company-auth .portal-form-main { max-width: 420px; padding: 54px 0; }
+.company-auth .portal-form-heading h1 { font-family: var(--company-heading-font); font-size: clamp(32px,3vw,43px); font-weight: 500; line-height: 1.12; letter-spacing: .025em; }
+.company-auth .portal-form-heading p { color: #000; font-size: 13px; line-height: 1.8; }
+.company-auth .portal-access-label { color: #555; font-weight: 500; font-size: 11px; }
+.company-auth .portal-access-label > span { background: var(--company-primary); }
+.company-auth .portal-form-top > span:first-child { color: var(--company-heading); font-size: 12px; }
+.company-auth .portal-field label { color: #282727; font-size: 12px; }
+.company-auth .portal-field > input, .company-auth .portal-password { border-color: #b9bebe; background: white; border-radius: 6px; }
+.company-auth .portal-field input { color: #000; font-size: 14px; }
+.company-auth .portal-eye { color: #555; }
+.company-auth .portal-primary { color: white; background: var(--company-heading); border-color: var(--company-heading); border-radius: 999px; font-size: 13px; }
+.company-auth .portal-primary:hover:not(:disabled) { filter: brightness(.85); background: var(--company-heading); }
+.company-auth .portal-primary:disabled { opacity: .6; }
+.company-auth .portal-link, .company-auth .portal-back, .company-auth .portal-checkbox { color: #444; }
+.company-auth .portal-checkbox input { accent-color: var(--company-heading); }
+.company-auth .portal-access-note, .company-auth .portal-access-note span, .company-auth .portal-access-note svg { color: #555; }
+.company-auth .portal-form-footer { color: #555; font-size: 10px; }
+.company-auth .portal-step-icon { color: var(--company-heading); background: #eee; border-radius: 44% 56% 49% 51%; }
+.company-auth button:focus-visible, .company-auth input:focus-visible, .company-auth a:focus-visible { outline: 3px solid var(--company-heading); outline-offset: 4px; }
+.company-auth .portal-field input:focus, .company-auth .portal-password:focus-within { border-color: var(--company-heading); box-shadow: 0 0 0 3px #0000000a; }
+.company-portal-access { max-width: 1208px; margin: 24px auto; padding: 22px 26px; border: 1px solid #ddd; border-radius: 4px 22px 22px; background: white; color: #282727; }
+.company-portal-access h2 { font-size: 18px; margin-bottom: 12px; }
+.company-portal-access p { font-size: 12px; line-height: 1.8; color: #444; overflow-wrap: anywhere; }
+.company-portal-access a { color: #282727; text-underline-offset: 4px; }
+.company-portal-access code { font-size: 13px; background: #f2f2f2; padding: 3px 7px; }
+@media(max-width:760px) {
+  .portal .company-auth { display: flex; flex-direction: column; }
+  .company-auth .portal-story { padding: 25px 26px 30px; border-radius: 0 0 38px 0; }
+  .company-login-brand { font-size: 24px; }
+  .company-auth .portal-story-content { padding-top: 24px; }
+  .company-auth .portal-story-content h2 { font-size: 32px; max-width: none; }
+  .company-auth .portal-story-content > p { display: none; }
+  .company-login-art { position: absolute; right: -80px; top: -15px; width: 200px; margin: 0; opacity: .35; z-index: -1; }
+  .company-auth .portal-form-side { padding: 24px 26px; min-height: 580px; }
+  .company-auth .portal-form-main { padding: 36px 0; }
+  .company-auth .portal-form-heading h1 { font-size: 32px; }
+  .company-auth .portal-field input { font-size: 16px; }
+  .company-portal-access { margin: 20px; padding: 20px; }
+}
